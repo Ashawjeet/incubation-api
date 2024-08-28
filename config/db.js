@@ -14,8 +14,7 @@
 // module.exports = connectDB;
 
 
-
-//final 28
+//finsl 28 
 // const mongoose = require("mongoose");
 
 // const connectDB = async () => {
@@ -55,22 +54,21 @@
 // };
 
 // module.exports = connectDB;
+  
  
-
-
-
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true, // Can be removed
-      useUnifiedTopology: true, // Can be removed
+    const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/superadmin_dashboard'; // Fallback to local DB
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
     console.log('MongoDB connected...');
   } catch (err) {
     console.error('Database connection error:', err.message);
-    process.exit(1); // Exit the process with failure
+    process.exit(1);
   }
 };
 
